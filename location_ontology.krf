@@ -1,0 +1,75 @@
+(in-microtheory GuidePlansOntologyMt)
+(genlMt GuidePlansMt GuidePlansOntologyMt)
+(genlMt Session-ReasonerPlanMt GuidePlansMt)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(isa path Region)
+(comment path "A connective region without walls, with a direction, and unamed, which allows an
+               agent to move from one region to another.")
+
+(isa gate Region)
+(comment gate "A gate in the wall, connecting two regions.")
+
+(isa room Region)
+(comment room "A room is a region completely bounded by walls.")
+
+(isa space Region)
+(comment space "A connective region without walls, usually without a direction, named,
+                and have its unique functionality like a room.")
+
+(isa pathOfDirection BinaryPredicate)
+(arity pathOfDirection 2)
+(arg1Isa pathOfDirection path)
+(arg2Isa pathOfDirection GeographicalDirection)
+(comment pathOfDirection "Describes the absolute direction of a path.")
+
+(isa across TernaryPredicate)
+(arity across 3)
+(arg1Isa across Region)
+(arg2Isa across Region)
+(arg3Isa across Region)
+(comment across "A relative locational relation between two regions that are connected by a third region and facing each other in the opposite direction in a building.")
+
+(isa adjacent TernaryPredicate)
+(arity adjacent 3)
+(arg1Isa across Region)
+(arg2Isa across Region)
+(arg3Isa across GeographicalDirection)
+(comment across "A relative locational relation between two regions adjacent to each other, with the second region in the specified absolute direction of the first region.")
+
+(isa agentLocation BinaryPredicate)
+(arity agentLocation 2)
+(arg1Isa agentLocation IntelligentAgent)
+(arg2Isa agentLocation Region)
+(comment agentLocation "Describes the current region where the agent locates in.")
+
+(isa agentDirection BinaryPredicate)
+(arity agentDirection 2)
+(arg1Isa agentDirection IntelligentAgent)
+(arg2Isa agentDirection GeographicalDirection)
+(comment agentDirection "Describes the current absolute direction of the agent.")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(isa oppositeDirection BinaryPredicate)
+(arity oppositeDirection 2)
+(arg1Isa oppositeDirection GeographicalDirection)
+(arg2Isa oppositeDirection GeographicalDirection)
+(comment oppositeDirection "Utility predicate for describing the relationship between two opposite directions.")
+
+(isa leftDirection BinaryPredicate)
+(arity leftDirection 2)
+(arg1Isa leftDirection GeographicalDirection)
+(arg2Isa leftDirection GeographicalDirection)
+(comment leftDirection "Utility predicate for describing the relationship where the second direction is on the left of the first direction.")
+
+(isa rightDirection BinaryPredicate)
+(arity rightDirection 2)
+(arg1Isa rightDirection GeographicalDirection)
+(arg2Isa rightDirection GeographicalDirection)
+(comment rightDirection "Utility predicate for describing the relationship where the second direction is on the right of the first direction.")
+
+(isa sameDirection BinaryPredicate)
+(arity sameDirection 2)
+(arg1Isa sameDirection GeographicalDirection)
+(arg2Isa sameDirection GeographicalDirection)
+(comment sameDirection "Utility predicate for describing the relationship between two same directions.")

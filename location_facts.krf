@@ -1,0 +1,46 @@
+(in-microtheory GuidePlansFactsMt)
+(genlMt GuidePlansMt GuidePlansFactsMt)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Relations between directions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(oppositeDirection East-Directly West-Directly)
+(oppositeDirection North-Directly South-Directly)
+(oppositeDirection Southeast-Directly Northwest-Directly)
+(oppositeDirection Southwest-Directly Northeast-Directly)
+(<== (oppositeDirection ?dir1 ?dir2)
+     (oppositeDirection ?dir2 ?dir1))
+
+(<== (sameDirection ?dir ?dir)
+     (isa GeographicalDirection ?dir))
+
+;;; For left and right, they are more general
+(leftDirection North-Directly West-Directly)
+(leftDirection North-Directly Northwest-Directly)
+(leftDirection North-Directly Southwest-Directly)
+
+(leftDirection Northwest-Directly West-Directly)
+(leftDirection Northwest-Directly Southwest-Directly)
+(leftDirection Northwest-Directly South-Directly)
+
+(leftDirection West-Directly Southwest-Directly)
+(leftDirection West-Directly South-Directly)
+(leftDirection West-Directly Southeast-Directly)
+
+(leftDirection Southwest-Directly South-Directly)
+(leftDirection Southwest-Directly Southeast-Directly)
+(leftDirection Southwest-Directly East-Directly)
+
+(<== (leftDirection ?dir1 ?dir2)
+     (leftDirection ?dir3 ?dir4)
+     (oppositeDirection ?dir1 ?dir3)
+     (oppositeDirection ?dir2 ?dir4))
+
+(<== (rightDirection ?dir1 ?dir2)
+     (leftDirection ?dir1 ?dir3)
+     (oppositeDirection ?dir3 ?dir2))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Map representations
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
