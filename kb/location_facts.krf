@@ -75,7 +75,7 @@
 (adjacent path5 path9 North-Directly)
 
 ;;; paths <-> gates
-(adjacent gate path1 North-Directly)
+(adjacent gate1 path1 North-Directly)
 (adjacent path1 gate2 North-Directly)
 (adjacent gate2 path2 North-Directly)
 (adjacent path2 gate3 North-Directly)
@@ -100,6 +100,7 @@
 (adjacent path5 classroom-2124 South-Directly)
 (adjacent path5 maker-lab South-Directly)
 (adjacent path5 gis-lab South-Directly)
+(adjacent path6 checkout-location East-Directly)
 (adjacent path7 elevator2 South-Directly)
 (adjacent path7 staircase3 South-Directly)
 (adjacent path8 meeting-room-2174 East-Directly)
