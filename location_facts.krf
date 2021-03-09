@@ -41,6 +41,166 @@
      (leftDirection ?dir1 ?dir3)
      (oppositeDirection ?dir3 ?dir2))
 
+;;; automatic inference of the opposite path direction
+(<== (pathOfDirection ?path ?dir2)
+     (oppositeDirection ?dir1 ?dir2)
+     (pathOfDirection ?path ?dir1))
+
+;;; automatic inference of the opposite adjacent direction
+(<== (adjacent ?reg1 ?reg2 ?dir2)
+     (oppositeDirection ?dir1 ?dir2)
+     (adjacent ?reg2 ?reg1 ?dir1))
+
+(<== (across ?reg1 ?reg2 ?reg3)
+     (across ?reg3 ?reg2 ?reg1))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Map representations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(pathOfDirection path1 North-Directly)
+(pathOfDirection path2 North-Directly)
+(pathOfDirection path3 East-Directly)
+(pathOfDirection path4 North-Directly)
+(pathOfDirection path5 East-Directly)
+(pathOfDirection path6 North-Directly)
+(pathOfDirection path7 East-Directly)
+(pathOfDirection path8 North-Directly)
+
+;;; paths <-> paths
+(adjacent path2 path3 West-Directly)
+(adjacent path3 path4 North-Directly)
+(adjacent path4 path7 West-Directly)
+(adjacent path5 path6 North-Directly)
+(adjacent path5 path9 North-Directly)
+
+;;; paths <-> gates
+(adjacent gate path1 North-Directly)
+(adjacent path1 gate2 North-Directly)
+(adjacent gate2 path2 North-Directly)
+(adjacent path2 gate3 North-Directly)
+(adjacent path4 gate4 East-Directly)
+(adjacent path4 gate5 West-Directly)
+(adjacent path4 gate6 North-Directly)
+(adjacent path7 gate6 North-Directly)
+(adjacent path7 main-entrance South-Directly)
+(adjacent path6 main-entrance West-Directly)
+(adjacent path5 gate4 West-Directly)
+(adjacent path8 gate7 West-Directly)
+
+;;; paths <-> rooms
+(adjacent path2 staircase1 West-Directly)
+(adjacent path3 elevator1 South-Directly)
+(adjacent path3 restroom South-Directly)
+(adjacent path3 northwestern-it-research-computing-services South-Directly)
+(adjacent path3 classroom-2210 South-Directly)
+(adjacent path5 meeting-room-2142 South-Directly)
+(adjacent path5 meeting-room-2133 South-Directly)
+(adjacent path5 meeting-room-2144 North-Directly)
+(adjacent path5 classroom-2124 South-Directly)
+(adjacent path5 maker-lab South-Directly)
+(adjacent path5 gis-lab South-Directly)
+(adjacent path7 elevator2 South-Directly)
+(adjacent path7 staircase3 South-Directly)
+(adjacent path8 meeting-room-2174 East-Directly)
+(adjacent path8 meeting-room-2176 East-Directly)
+(adjacent path8 staircase2 North-Directly)
+(adjacent path8 video-production-studio West-Directly)
+
+;;; paths <-> spaces
+(adjacent path2 vending-machine East-Directly)
+(adjacent path5 astrahan-information-center South-Directly)
+(adjacent path5 south-study-lounge East-Directly)
+(adjacent path6 printers West-Directly)
+(adjacent path8 north-study-lounge North-Directly)
+(adjacent path8 east-commons South-Directly)
+(adjacent path9 east-commons North-Directly)
+
+;;; gates <-> gates
+; None
+
+;;; gates <-> rooms
+; None
+
+;;; gates <-> spaces
+(adjacent gate3 south-study-lounge North-Directly)
+(adjacent gate6 north-study-lounge North-Directly)
+
+;;; rooms <-> rooms
+(adjacent staircase1 lactation-room West-Directly)
+(adjacent staircase1 elevator1 West-Directly)
+(adjacent restroom lactation-room East-Directly)
+(adjacent restroom elevator1 East-Directly)
+(adjacent restroom northwestern-it-research-computing-services West-Directly)
+(adjacent northwestern-it-research-computing-services classroom-2210 West-Directly)
+(adjacent classroom-2124 maker-lab West-Directly)
+(adjacent maker-lab gis-lab West-Directly)
+
+(adjacent meeting-room-2141 meeting-room-2135 West-Directly)
+(adjacent meeting-room-2141 meeting-room-2142 North-Directly)
+(adjacent meeting-room-2142 meeting-room-2133 West-Directly)
+(adjacent meeting-room-2135 meeting-room-2133 North-Directly)
+
+(adjacent meeting-room-2144 meeting-room-2146 North-Directly)
+(adjacent meeting-room-2146 meeting-room-2148 North-Directly)
+(adjacent meeting-room-2148 meeting-room-2151 West-Directly)
+(adjacent meeting-room-2151 meeting-room-2153 West-Directly)
+(adjacent meeting-room-2153 meeting-room-2155 West-Directly)
+
+(adjacent meeting-room-2174 meeting-room-2176 North-Directly)
+
+;;; rooms <-> spaces
+(adjacent south-study-lounge meeting-room-2141 West-Directly)
+(adjacent south-study-lounge meeting-room-2142 West-Directly)
+(adjacent south-study-lounge meeting-room-2144 West-Directly)
+(adjacent south-study-lounge meeting-room-2146 West-Directly)
+(adjacent south-study-lounge meeting-room-2148 West-Directly)
+
+(adjacent east-commons meeting-room-2148 South-Directly)
+(adjacent east-commons meeting-room-2151 South-Directly)
+(adjacent east-commons meeting-room-2153 South-Directly)
+(adjacent east-commons meeting-room-2155 South-Directly)
+
+(adjacent north-study-lounge staircase2 East-Directly)
+
+;;; spaces <-> spaces
+(adjacent south-study-lounge east-commons Northwest-Directly)
+(adjacent south-study-lounge lockers West-Directly)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Function of rooms and spaces
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(regionFunction staircase1 "go-up,go-down")
+(regionFunction staircase2 "go-up,go-down")
+(regionFunction staircase3 "go-up,go-down")
+
+(regionFunction elevator1 "go-up,go-down")
+(regionFunction elevator2 "go-up,go-down")
+
+(regionFunction lactation-room "feed-baby")
+(regionFunction restroom "restroom")
+(regionFunction northwestern-it-research-computing-services "it-service,computing-service")
+(regionFunction classroom-2210 "go-to-classroom-2210")
+(regionFunction classroom-2214 "go-to-classroom-2214")
+(regionFunction maker-lab "maker-lab")
+(regionFunction gis-lab "gis-lab")
+(regionFunction meeting-room-2141 "meeting")
+(regionFunction meeting-room-2135 "meeting")
+(regionFunction meeting-room-2142 "meeting")
+(regionFunction meeting-room-2133 "meeting")
+(regionFunction meeting-room-2144 "meeting")
+(regionFunction meeting-room-2146 "meeting")
+(regionFunction meeting-room-2148 "meeting")
+(regionFunction meeting-room-2151 "meeting")
+(regionFunction meeting-room-2153 "meeting")
+(regionFunction meeting-room-2155 "meeting")
+(regionFunction meeting-room-2174 "meeting")
+(regionFunction meeting-room-2176 "meeting")
+(regionFunction video-production-studio "video-production-studio")
+(regionFunction checkout-location "checkout-books,return-books")
+(regionFunction lockers "store-personal-things,lockers")
+(regionFunction south-study-lounge "study")
+(regionFunction north-study-lounge "study")
+(regionFunction printers "print")
+(regionFunction astrahan-information-center "info-center")
+(regionFunction vending-machine "buy-drinks,buy-snacks,vending-machine")
