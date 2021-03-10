@@ -51,9 +51,6 @@
      (oppositeDirection ?dir1 ?dir2)
      (adjacent ?reg2 ?reg1 ?dir1))
 
-(<== (across ?reg1 ?reg2 ?reg3)
-     (across ?reg3 ?reg2 ?reg1))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Map representations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -167,6 +164,40 @@
 ;;; spaces <-> spaces
 (adjacent south-study-lounge east-commons Northwest-Directly)
 (adjacent south-study-lounge lockers West-Directly)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Routing info
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(<== (nearestPath ?region ?path)
+     (adjacent ?region ?path)
+     (isa ?path path)
+     (isa ?region room))
+(<== (nearestPath ?path1 ?path2)
+     (nearestPath ?path2 ?path1))
+
+(nearestPath lactation-room path3)
+
+(nearestPath gate1 path1)
+(nearestPath gate2 path2)
+(nearestPath gate3 path3)
+(nearestPath gate4 path5)
+(nearestPath gate5 path4)
+(nearestPath gate6 path7)
+(nearestPath gate7 path7)
+(nearestPath main-entrance path7)
+(nearestPath vending-machine path2)
+(nearestPath path1 path2)
+(nearestPath path1 path2)
+(nearestPath path2 south-study-lounge)
+(nearestPath path3 south-study-lounge)
+(nearestPath path5 path9)
+(nearestPath path9 east-commons)
+(nearestPath south-study-lounge east-commons)
+(nearestPath east-commons path8)
+(nearestPath path6 path7)
+(nearestPath path4 path7)
+(nearestPath path7 path8)
+(nearestPath path8 north-study-lounge)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Function of rooms and spaces

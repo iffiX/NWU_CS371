@@ -7,15 +7,15 @@
 (comment path "A connective region without walls, with a direction, and unamed, which allows an
                agent to move from one region to another.")
 
-(isa gate Region)
+(genls gate path)
 (comment gate "A gate in the wall, connecting two regions.")
+
+(genls space path)
+(comment space "A connective region without walls, usually without a direction, named,
+                and have its unique functionality like a room.")
 
 (isa room Region)
 (comment room "A room is a region completely bounded by walls.")
-
-(isa space Region)
-(comment space "A connective region without walls, usually without a direction, named,
-                and have its unique functionality like a room.")
 
 (isa pathOfDirection BinaryPredicate)
 (arity pathOfDirection 2)
@@ -25,16 +25,22 @@
 
 (isa adjacent TernaryPredicate)
 (arity adjacent 3)
-(arg1Isa across Region)
-(arg2Isa across Region)
-(arg3Isa across GeographicalDirection)
-(comment across "A relative locational relation between two regions adjacent to each other, with the second region in the specified absolute direction of the first region.")
+(arg1Isa adjacent Region)
+(arg2Isa adjacent Region)
+(arg3Isa adjacent GeographicalDirection)
+(comment adjacent "A relative locational relation between two regions adjacent to each other, with the second region in the specified absolute direction of the first region.")
 
 (isa regionFunction BinaryPredicate)
 (arity regionFunction 2)
 (arg1Isa regionFunction Region)
 (arg2Isa regionFunction CharacterString)
-(comment pathOfDirection "Describes function tags of a region, the string is a list of tags joined by commas.")
+(comment regionFunction "Describes function tags of a region, the string is a list of tags joined by commas.")
+
+(isa nearestPath BinaryPredicate)
+(arity nearestPath 2)
+(arg1Isa nearestPath Region)
+(arg2Isa nearestPath path)
+(comment nearestPath "Describes the nearest path to go to from some region.")
 
 (isa agentLocation BinaryPredicate)
 (arity agentLocation 2)
