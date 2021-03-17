@@ -1,0 +1,19 @@
+(in-microtheory GuidePlansFactsMt)
+(genlMt GuidePlansMt GuidePlansFactsMt)
+
+;;; Occupancy of rooms
+(isOccupied meeting-room-2141)
+(isOccupied meeting-room-2135)
+
+;;; Nearest unoccupied
+(nearestUnoccupied meeting-room-2141 meeting-room-2142)
+(nearestUnoccupied meeting-room-2135 meeting-room-2133)
+
+;;; if you're at a neighboring path to the goal, it's the closest path
+(<== (nearestNeighborPath ?source ?target ?source)
+     (adjacent ?source ?target))
+
+;;; Define nearest nearest neighbors
+(nearestNeighborPath gate1 gate2 path1)
+(nearestNeighborPath gate1 path2 gate2)
+(nearestNeighborPath gate1 path3 gate3)

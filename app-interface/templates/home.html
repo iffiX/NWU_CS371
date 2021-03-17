@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MuddGuider</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+
+    <body>
+        <!-- Input -->
+        <div style="background-color:rebeccapurple;padding:2em;">
+            <br/><br/>
+            <h1 style="text-align:center;color:white;">MuddGuider</h3>
+            <div style="text-align: center;">
+
+                <select name="rooms" id="rooms">
+                    <option value="volvo">meeting room 2141</option>
+                    <option value="saab">meeting room 2142</option>
+                    <option value="opel">meeting room 2135</option>
+                    <option value="audi">meeting room 2133</option>
+                    <option value="volvo">meeting room 2174</option>
+                    <option value="saab">meeting room 2175</option>
+                    <option value="opel">meeting room 2152</option>
+                    <option value="audi">meeting room 2153</option>
+                    <option value="volvo">class room 2124</option>
+                    <option value="saab">maker lab</option>
+                    <option value="opel">gis lab</option>
+                    <option value="volvo">south study lounge</option>
+                    <option value="saab">east commons</option>
+                    <option value="opel">north study lounge</option>
+                    <option value="audi">IT research computing services</option>
+                  </select>
+
+                  <select name="rooms" id="rooms">
+                    <option value="volvo">meeting room 2141</option>
+                    <option value="saab">meeting room 2142</option>
+                    <option value="opel">meeting room 2135</option>
+                    <option value="audi">meeting room 2133</option>
+                    <option value="volvo">meeting room 2174</option>
+                    <option value="saab">meeting room 2175</option>
+                    <option value="opel">meeting room 2152</option>
+                    <option value="audi">meeting room 2153</option>
+                    <option value="volvo">class room 2124</option>
+                    <option value="saab">maker lab</option>
+                    <option value="opel">gis lab</option>
+                    <option value="volvo">south study lounge</option>
+                    <option value="saab">east commons</option>
+                    <option value="opel">north study lounge</option>
+                    <option value="audi">IT research computing services</option>
+                  </select>
+
+                <button class="btn btn-light" onclick="document.getElementById('sample').style.display='block';">Go</button>
+            </div>
+            <br/><br/>
+        </div>
+
+        <!-- Results -->
+        <div class="conatainer" style="padding: 2em;text-align: center;">
+            <h3 class="text-secondary">(Sample for demo)</h3>
+            <div id="sample" style="display:none;">
+                <p style="color:red;">Meeting room 2141 is occupied</p>
+                <p>Here is the path to the nearest unoccupied meeting room (meeting room 2142)...</p>
+                <br/>
+                <p>1. Go straight down to gate1</p>
+                <p>2. Go straight down to gate2</p>
+                <p>3. Turn left to the south study lounge</p>
+                <p>4. Go straight ahead to meeting room 2142</p>
+            </div>
+        </div>
+
+
+        <script>
+            function displayRoute() {
+                $.ajax({
+                url: "/get-route",
+                type: "GET",
+                data: {
+                    "start": "room 1",
+                    "destination": "room 2"
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (request, status, error) {
+                    console.log(error);
+                }
+            });
+            }
+        </script>
+    </body>
+</html>

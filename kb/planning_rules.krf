@@ -1,0 +1,86 @@
+(in-microtheory GuidePlansMt)
+
+;;;;;;;;;;; CHECKING OCCUPANCY ;;;;;;;;;;;
+
+;;; If you are starting at an occupied room, find the nearest path to na unoccupied room
+(preconditionForMethod
+ (and
+        (isOccupied ?source)
+        (nearestUnoccupied ?source ?nearest)
+      )
+ (methodForAction
+  (moveAgent ?source ?target)
+  (actionSequence
+   (TheList
+    (doAgentPlan
+     (moveAgent ?source ?nearest)
+ 
+    )))))
+
+;;;;;;;;;;; ENTERING AND EXITING ROOMS ;;;;;;;;;;;
+
+;;; If you are starting at a room, find the nearest path
+(preconditionForMethod
+ (and
+        (isa ?source room)
+        (isa ?neighbor path)
+        (adjacent ?source ?neighbor)
+      )
+ (methodForAction
+  (moveAgent ?source ?target)
+  (actionSequence
+   (TheList
+    (doAgentPlan
+     (doRecord (ist-Information MyTravelMt (moveAgent ?source ?neighbor)))
+ 
+    )))))
+
+;;; If you are ending at a room and it is adjacent, go in
+(preconditionForMethod
+ (and
+        (isa ?target room)
+        (isa ?neighbor path)
+        (adjacent ?target ?neighbor)
+      )
+ (methodForAction
+  (moveAgent ?source ?target)
+  (actionSequence
+   (TheList
+    (doAgentPlan
+     (doRecord (ist-Information MyTravelMt (moveAgent ?neighbor ?target)))
+ 
+    )))))
+
+;;;;;;;;;;; MOVING ALONG PATHS ;;;;;;;;;;;
+
+;;; If you are at a path and adjacent to your target, move there
+(preconditionForMethod
+ (and
+        (adjacent ?source ?target)
+      )
+ (methodForAction
+  (movePath ?source ?target)
+  (actionSequence
+   (TheList
+    (doAgentPlan
+     (doRecord (ist-Information MyTravelMt (movePath ?source ?target)))
+    )
+ 
+    ))))
+
+;;; If you are at a path and not adjacent to your target, move to nearest
+(preconditionForMethod
+ (and
+        (not (adjacent ?source ?target))
+        (nearestNeighborPath ?source ?target ?nearest)
+      )
+ (methodForAction
+  (movePath ?source ?target)
+  (actionSequence
+   (TheList
+    (doAgentPlan
+     (movePath ?source ?nearest))
+     (doAgentPlan
+     (movePath ?nearest ?target))
+ 
+    ))))

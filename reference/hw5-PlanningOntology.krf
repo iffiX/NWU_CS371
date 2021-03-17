@@ -1,0 +1,38 @@
+
+
+(in-microtheory TravelPlansOntologyMt)
+(genlMt TravelPlansMt TravelPlansOntologyMt)
+(genlMt Session-ReasonerPlanMt TravelPlansMt)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(isa travel ComplexActionPredicate)
+(arity travel 2)
+
+(isa walk ComplexActionPredicate)
+(arity walk 2)
+
+(isa takeTrain ComplexActionPredicate)
+(arity takeTrain 2)
+
+(isa takeBus ComplexActionPredicate)
+(arity takeBus 2)
+
+(isa fly ComplexActionPredicate)
+(arity fly 2)
+
+
+(isa closestTrainStation Predicate)
+(arity closestTrainStation 2)
+
+(isa closestBusStop Predicate)
+(arity closestBusStop 2)
+
+(isa closestAirport Predicate)
+(arity closestAirport 2)
+
+
+(isa TrainStation ExistingObjectType)
+(genls TrainStation TransportFacility)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; End of Code

@@ -1,0 +1,81 @@
+
+(in-microtheory TravelPlansFactsMt)
+(genlMt TravelPlansMt TravelPlansFactsMt)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; TODO: Terminal/Station as collectins with appropriate genls
+(isa LosAngelesAirport AirportTerminalBuilding)
+(isa BeijingTerminal AirportTerminalBuilding)
+(isa AtlantaAirport AirportTerminalBuilding)
+
+(isa BeijingTerminal BusStop)
+(isa SanFranciscoStation BusStop)
+(isa YantaiBusStop BusStop)
+(isa BaodingStation BusStop)
+(isa CarmelByTheSeaBusStop BusStop)
+
+(isa LosAngelesTrainStation TrainStation)
+(isa SanFranciscoStation TrainStation)
+(isa YantaiTrainStation TrainStation)
+(isa BaodingStation TrainStation)
+
+(isa CarmelHotel HotelBuilding)
+(isa YantaiHotel HotelBuilding)
+
+
+;;; if you're at a train station, it's the closest one
+(<== (closestTrainStation ?station ?station)
+     (isa ?station TrainStation))
+
+;;; for everything else
+(closestTrainStation CarmelHotel SanFranciscoStation)
+(closestTrainStation YantaiHotel YantaiTrainStation)
+(closestTrainStation BeijingTerminal BaodingStation)
+(closestTrainStation LosAngelesAirport LosAngelesTrainStation)
+
+
+;;; if you're at a bus stop, it's the closest one
+(<== (closestBusStop ?station ?station)
+     (isa ?station BusStop))
+
+;;; for everything else
+(closestBusStop CarmelHotel CarmelByTheSeaBusStop)
+
+
+;;; if you're at an airport, it's the closest one
+(<== (closestAirport ?port ?port)
+     (isa ?port AirportTerminalBuilding))
+
+;;; for everything else
+(closestAirport YantaiHotel BeijingTerminal)
+(closestAirport CarmelHotel LosAngelesAirport)
+
+
+
+
+;;; distances
+(<== (distanceBetween ?a ?b ?dis)
+     (distanceBetween ?b ?a ?dis))
+
+(distanceBetween YantaiHotel CarmelHotel 5900)
+(distanceBetween YantaiHotel YantaiTrainStation 1)
+(distanceBetween YantaiHotel BeijingTerminal 450)
+(distanceBetween YantaiHotel BaodingStation 410)
+
+(distanceBetween YantaiTrainStation BeijingTerminal 440)
+
+(distanceBetween CarmelHotel CarmelByTheSeaBusStop 1)
+(distanceBetween CarmelHotel SanFranciscoStation 120)
+(distanceBetween CarmelHotel LosAngelesAirport 350)
+(distanceBetween CarmelHotel LosAngelesTrainStation 350)
+(distanceBetween CarmelHotel BeijingTerminal 6000)
+
+(distanceBetween LosAngelesAirport LosAngelesTrainStation 1)
+(distanceBetween LosAngelesTrainStation SanFranciscoStation 420)
+(distanceBetween SanFranciscoStation CarmelByTheSeaBusStop 120)
+
+(distanceBetween BaodingStation BeijingTerminal 95)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; End of Code

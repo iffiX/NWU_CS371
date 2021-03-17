@@ -1,0 +1,31 @@
+(in-microtheory GuidePlansOntologyMt)
+(genlMt GuidePlansMt GuidePlansOntologyMt)
+(genlMt Session-ReasonerPlanMt GuidePlansMt)
+
+;;; Actions
+(isa movePath ComplexActionPredicate)
+(arity movePath 2)
+(comment movePath "Moves between paths")
+
+(isa movePath ComplexActionPredicate)
+(arity movePath 2)
+(comment movePath "Moves between paths")
+
+;;; Helpful for path finding
+(isa nearestNeighborPath TernaryPredicate)
+(arity nearestNeighborPath 3)
+(arg1Isa nearestNeighborPath Region)
+(arg2Isa nearestNeighborPath Region)
+(arg3Isa nearestNeighborPath Region)
+(comment nearestNeighborPath "Gives the nearest neighbor to the end goal from the start")
+
+(isa isOccupied Predicate)
+(arity isOccupied 1)
+(arg1Isa isOccupied room)
+(comment isOccupied "Specified room is occupied")
+
+(isa nearestUnoccupied BinaryPredicate)
+(arity nearestUnoccupied 2)
+(arg1Isa nearestUnoccupied room)
+(arg2Isa nearestUnoccupied room)
+(comment nearestUnoccupied "Specifies the nearest unoccupied room")
