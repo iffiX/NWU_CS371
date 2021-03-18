@@ -239,7 +239,7 @@
 
     ;; MODIFY START AND END LOCATION HERE
     (user-at u gate1)
-    (user-target u gate1)
+    (user-target u maker-lab)
   )
   (:goal
     ;;;;;;;;;; User Goal ;;;;;;;;;;
