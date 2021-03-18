@@ -15,7 +15,6 @@
     ;; User location and orientation
     (user-at ?u - user ?r - region)
     (user-face ?u - user ?d - direction)
-    (in-room ?u - user)
 
     ;; Spatial relations
     (adjacent ?r1 - region ?r2 - region ?d - direction)
@@ -100,7 +99,6 @@
         (user-target ?u ?t)
         (not (is-occupied ?t))
 
-        (not (in-room ?u))
         (user-at ?u ?p)
         (user-face ?u ?d)
         (adjacent ?r ?p ?d)
@@ -108,7 +106,6 @@
 
     :effect (
       and
-        (in-room ?u)
         (not (user-at ?u ?p))
         (user-at ?u ?r)
     )
@@ -130,7 +127,6 @@
         (user-target ?u ?t)
         (not (is-occupied ?t))
 
-        (in-room ?u)
         (user-at ?u ?r)
         (user-face ?u ?d)
         (adjacent ?r ?p ?d)
@@ -138,7 +134,6 @@
 
     :effect (
       and
-        (not (in-room ?u))
         (not (user-at ?u ?r))
         (user-at ?u ?p)
     )
